@@ -1,0 +1,2 @@
+Our task is to create an Operation scheduler for health professionals to manage and organize patient appointments. The software must contain the ability to add, delete, undo 
+and edit appointments. The diary must be save and loaded and have an option to display a doctors all appointments. A search feature that can be timed is also required.
