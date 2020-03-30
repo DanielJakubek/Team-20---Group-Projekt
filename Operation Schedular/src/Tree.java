@@ -130,86 +130,52 @@ public class Tree {
 		}
 	}
 	
-	public Node delete(int id)
+	public void delete(int value) {
+	    root = delete(root, value);
+	}
+
+	public Node delete(Node current, int value) {
+	    if (current == null) {
+	        return null;
+	    }
+
+	    if (value == current.getAppID()) {
+	        // No children
+	        if (current.getLeft() == null && current.getRight() == null) {
+	            return null;
+	        }
+
+	        // Only 1 child
+	        if (current.getRight() == null) {
+	            return current.getLeft();
+	        }
+	        if (current.getLeft() == null) {
+	            return current.getRight();
+	        }
+
+	        // Two children
+	        Node smallestValue = minValue(current.getRight());
+	        current.setAppID(smallestValue.getAppID());
+	        current.setRight(delete(current.getRight(), smallestValue.getAppID()));
+	        return current;
+	    }
+	    if (value < current.getAppID()) {
+	        current.setLeft(delete(current.getLeft(), value));
+	        return current;
+	    }
+
+	    current.setRight(delete(current.getRight(), value));
+	    return current;
+	}
+	
+	public Node minValue(Node node)
 	{
-		Node previous = null;
-		Node current = root;
-		
-		//find the desired node in the tree and assign the current and previous values
-		while(current != null && current.getAppID() != id)
+		Node minNode = node;
+		while (node.getLeft() != null)
 		{
-			previous = current;
-			
-			if(id < current.getAppID())
-			{
-				current = current.getLeft();
-			}
-			else
-			{
-				current = current.getRight();
-			}
+			minNode = node.getLeft();
+			node = node.getLeft();
 		}
-		
-		//Case 1: leaf node
-		if(current.getLeft() == null && current.getRight() == null)
-		{
-			if(current != this.root)
-			{
-				if(previous.getLeft() == current)
-				{
-					previous.setLeft(null);
-					return current;
-				}
-				else
-				{
-					previous.setRight(null);
-					return current;
-				}
-			}
-			//if the root node is the only node
-			else
-			{
-				this.root = null;
-				return null;
-			}
-		}
-		
-		//Case 2: 2 child nodes
-		else if(current.getLeft() != null && current.getRight() != null)
-		{
-			//still working on this
-			return null;
-		}
-		
-		//Case 3: 1 child node
-		else
-		{
-			Node child = null;
-			if(current.getLeft() == null)
-			{
-				child = current.getRight();
-			}
-			else
-			{
-				child = current.getLeft();
-			}
-			
-			if(current != this.root)
-			{
-				if(current == previous.getLeft())
-				{
-					previous.setLeft(child);
-				}
-				else
-				{
-					previous.setRight(child);
-				}
-			}
-			else
-			{
-				this.root = child;
-			}
-			return current;
-		}
+		return minNode;
 	}
 }
