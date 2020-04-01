@@ -84,6 +84,11 @@ public class Tree {
 		}
 	}
 	
+	/**
+	 * adds a new node to the tree, if there are no other nodes in the tree, it will set the new node as the root
+	 * @param id the Appointment ID for the new node
+	 * @param appointment the appointment associated with the new node
+	 */
 	public void addToTree(int id, Appointment appointment)
 	{
 		Node newNode = new Node(id, appointment);
@@ -130,10 +135,20 @@ public class Tree {
 		}
 	}
 	
+	/**
+	 * intermediary method that will call the main delete method
+	 * @param value the ID of the node
+	 */
 	public void delete(int value) {
 	    root = delete(root, value);
 	}
 
+	/**
+	 * deletes a node from the tree
+	 * @param current the starting node
+	 * @param value the ID of the node to be deleted
+	 * @return
+	 */
 	public Node delete(Node current, int value) {
 	    if (current == null) {
 	        return null;
@@ -168,6 +183,11 @@ public class Tree {
 	    return current;
 	}
 	
+	/**
+	 * finds the minimum value in a subtree
+	 * @param node the starting node
+	 * @return the node with the minimum value
+	 */
 	public Node minValue(Node node)
 	{
 		Node minNode = node;
