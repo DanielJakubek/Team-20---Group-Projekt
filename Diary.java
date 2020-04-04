@@ -1,8 +1,6 @@
 
 public class Diary {
 	private Tree appTree;
-	private ChangeManager manager;
-	//private Stack undoStack; 
 	
 	/**
 	 * Default constructor for Diary class
@@ -12,6 +10,10 @@ public class Diary {
 		appTree = new Tree();
 	}
 	
+	public Tree getAppTree()
+	{
+		return appTree;
+	}
 	/**
 	 * Adds an appointment to the tree
 	 * @param id the ID of the new appointment
@@ -19,8 +21,7 @@ public class Diary {
 	 */
 	public void createAppointment(int id, Appointment appointment)
 	{
-		appTree.addToTree(id, appointment);
-		manager.addChangeable(new CommandLineChanger("appTree.addToTree(id, appointment)") );
+		UndoableAdd add = new UndoableAdd(this.appTree, id, appointment);		
 	}
 	
 	/**
@@ -30,7 +31,7 @@ public class Diary {
 	public void findAppointment(int id)
 	{
 		appTree.findInTree(id);
-		manager.addChangeable(new CommandLineChanger("appTree.findInTree(id)") );
+		//manager.addChangeable(new CommandLineChanger("appTree.findInTree(id)") );
 		//not sure if this needs to be included in the undo feature since it doesn't change any data
 	}
 	
@@ -38,10 +39,9 @@ public class Diary {
 	 * deletes an appointment
 	 * @param id the ID of the appointment being deleted
 	 */
-	public void deleteAppointment(int id)
+	public void deleteAppointment(int id, Appointment appointment)
 	{
-		appTree.delete(id);
-		manager.addChangeable(new CommandLineChanger("appTree.delete(id)") );
+		UndoableDelete delete = new UndoableDelete(this.appTree, id, appointment);
 	}
 	
 	public void saveAppointment()
@@ -53,36 +53,5 @@ public class Diary {
 	{
 		//still needs to be implemented
 	}
-	
-public static class CommandLineChanger implements Changeable{
-
-		
-
-		private final String val;
-
-		public CommandLineChanger(String v){
-
-			super();
-
-			this.val = v;
-
-		}
-
-		
-
-		public void undo(){
-
-			System.out.println(val + " undone");
-
-		}
-
-		
-
-		public void redo(){
-
-			System.out.println(val + " redone");
-
-		}
-
-	}
 }
+

@@ -203,13 +203,13 @@ public class Tree {
 	 * a recursive function that performs an in-order traversal of the tree and prints out the relevant data for each node
 	 * @param node the node where the traversal begins
 	 */
-	public void traverseTreePrint(Node node)
+	public void printTree(Node node)
 	{
 		if(node != null)
 		{
-			traverseTreePrint(node.getLeft());
+			printTree(node.getLeft());
 			System.out.println("\nID: " + node.getAppID());			
-			traverseTreePrint(node.getRight());
+			printTree(node.getRight());
 		}
 	}
 }
