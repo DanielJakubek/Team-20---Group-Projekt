@@ -4,6 +4,12 @@ public class UndoableDelete implements UndoableCommand {
 	private int id;
 	private Appointment appointment;
 	
+	/**
+	 * Default constructor for the UndoableDelete class, initialises variables and carries out the required command
+	 * @param tree the binary tree being edited
+	 * @param id the ID of the node being deleted
+	 * @param appointment the appointment object associated with the node
+	 */
 	public UndoableDelete(Tree tree, int id, Appointment appointment)
 	{
 		this.tree = tree;
@@ -16,10 +22,5 @@ public class UndoableDelete implements UndoableCommand {
 	public void undo()
 	{
 		tree.addToTree(id, appointment);
-	}
-	
-	public void redo()
-	{
-		tree.delete(id);
 	}
 }

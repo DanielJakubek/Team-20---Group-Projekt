@@ -1,6 +1,7 @@
 
 public class Diary {
 	private Tree appTree;
+	private Stack undoStack;
 	
 	/**
 	 * Default constructor for Diary class
@@ -8,11 +9,20 @@ public class Diary {
 	public Diary()
 	{
 		appTree = new Tree();
+		undoStack = new Stack();
 	}
-	
+	/**
+	 * Accessor method for appTree
+	 * @return the tree
+	 */
 	public Tree getAppTree()
 	{
 		return appTree;
+	}
+	
+	public Stack getStack()
+	{
+		return undoStack;
 	}
 	/**
 	 * Adds an appointment to the tree
@@ -21,7 +31,8 @@ public class Diary {
 	 */
 	public void createAppointment(int id, Appointment appointment)
 	{
-		UndoableAdd add = new UndoableAdd(this.appTree, id, appointment);		
+		UndoableAdd add = new UndoableAdd(this.appTree, id, appointment);
+		undoStack.push(add);
 	}
 	
 	/**
@@ -31,8 +42,6 @@ public class Diary {
 	public void findAppointment(int id)
 	{
 		appTree.findInTree(id);
-		//manager.addChangeable(new CommandLineChanger("appTree.findInTree(id)") );
-		//not sure if this needs to be included in the undo feature since it doesn't change any data
 	}
 	
 	/**
@@ -42,6 +51,7 @@ public class Diary {
 	public void deleteAppointment(int id, Appointment appointment)
 	{
 		UndoableDelete delete = new UndoableDelete(this.appTree, id, appointment);
+		undoStack.push(delete);
 	}
 	
 	public void saveAppointment()
