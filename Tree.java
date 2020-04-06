@@ -198,4 +198,18 @@ public class Tree {
 		}
 		return minNode;
 	}
+	
+	/**
+	 * a recursive function that performs an in-order traversal of the tree and prints out the relevant data for each node
+	 * @param node the node where the traversal begins
+	 */
+	public void printTree(Node node)
+	{
+		if(node != null)
+		{
+			printTree(node.getLeft());
+			System.out.println("\nID: " + node.getAppID());			
+			printTree(node.getRight());
+		}
+	}
 }
