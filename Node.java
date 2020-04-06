@@ -1,3 +1,5 @@
+import java.util.Date;
+
 public class Node {
 	private Appointment appointment;
 	private int appID;
@@ -89,4 +91,44 @@ public class Node {
 	public void setLeft(Node left) {
 		this.left = left;
 	}
+	
+	/**
+	 * Mutator method for the date
+	 * @param date of the appointment
+	 */
+	public void setDate(Date date)
+	{
+		appointment.setDate(date);
+	}
+	
+	public void setStartTime(Date startTime) 
+	{
+		appointment.setStartTime(startTime);
+	}
+	
+	public void setEndTime(Date endTime) {
+		appointment.setEndTime(endTime);
+	}
+	
+	public void setTreatmentType(String treatmentType) {
+		appointment.setTreatmentType(treatmentType);
+	}
+	
+	public void setAppID(String appID) {
+		appointment.setAppID(appID);
+	}
+	
+	public void setProfsPresent(Professional[] profsPresent) {
+		appointment.setProfsPresent(profsPresent);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

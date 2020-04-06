@@ -1,3 +1,7 @@
+import java.sql.Date;
+import java.util.Scanner;
+
+
 public class Tree {
 	private Node root;
 	
@@ -210,5 +214,203 @@ public class Tree {
 			System.out.println("\nID: " + node.getAppID());			
 			printTree(node.getRight());
 		}
+	}
+	
+	/**
+	 * Gets user input on what appointment to edit and then asks
+	 * what aspect of the appointment to edit
+	 * @param editID the ID of the appointment that is to be edited
+	 */
+	public void editTree(int editID)
+	{
+		Scanner editScanner = new Scanner(System.in);  // Create a Scanner object
+		
+		if(isTreeEmpty())
+		{
+			System.out.println("The tree is empty, cannot edit");
+		}
+		
+		if(findInTree(editID) == null)
+		{
+			System.out.println("There is no such appointment");
+		}
+		else
+		{
+			boolean editing = true;
+			Node currentNode = new Node();
+			currentNode = findInTree(editID);
+			
+			while(editing)
+			{
+				System.out.println("What would you like to edit?");
+				System.out.print("\r 1:Date \r 2:Start Time \r 3:End Time \r 4: Treatment Type \r 5: Professionals Present \r "
+						+ "\r 6: Appointment ID \r 7:Finished \r Option: ");
+				
+				String userChoice = editScanner.nextLine();
+				
+				//switch that checks the values of userChoice
+				//Calls appropriate method from the Files class depending on the user choice
+				switch(userChoice) 
+				{
+					 case "1":
+					 {
+						//sets node's date
+						currentNode.setDate(editDate());
+						break;
+					 }
+					 
+					 case "2":
+					 {
+						currentNode.setStartTime(editStartTime());
+						break;
+					 }
+					 case "3":
+					 {
+						currentNode.setEndTime(editEndTime());
+						break;
+					 }
+					 case "4":
+					 {
+						currentNode.setTreatmentType(editTreatmentType());
+						break;
+					 }
+					 case "5":
+					 {
+
+						editing = false;
+						break;
+					 }
+					 case "6":
+					 {
+						 
+						 int newAppID = 0;
+						 
+						 try
+							{
+								System.out.println("Professional to edit: ");
+								//makes userInput to the user's input
+								String newStringID = editScanner.nextLine();
+					
+								//converts user input to integer value
+								newAppID = Integer.parseInt(newStringID);
+							}
+							catch(Exception e) 
+							{
+								System.out.println("Invalid input! try again");
+							}
+
+						 currentNode.setAppID(newAppID);
+					 }
+					 default: //Default, if user input does not match, sends error message
+					 {
+						 System.out.println("Invalid input. Please try again.");
+						 break;
+					 }
+				 }
+			}
+		}
+	}
+	
+	
+	
+	/**
+	 * Edits the date of a node
+	 * @return newSqlDate the new date set by user
+	 */
+	public Date editDate()
+	{
+		Scanner editScanner = new Scanner(System.in);  // Create a Scanner object
+		
+		Date newSqlDate = null;
+		
+		try
+		{
+			System.out.println("Enter the new Date: ");
+			//makes userInput to the user's input
+			String newDate = editScanner.nextLine();
+			
+			//converts string into sql date
+			newSqlDate=Date.valueOf(newDate);  
+			
+		}
+		catch(Exception e) 
+		{
+			System.out.println("Invalid input! try again");
+		}
+		return newSqlDate;
+	}
+	
+	/**
+	 * Edits the start time
+	 * @return newSqlStartTime the new time appointment starts at
+	 */
+	public Date editStartTime()
+	{
+		Scanner editScanner = new Scanner(System.in);  // Create a Scanner object
+		
+		System.out.println("Enter the new start Time: ");
+		
+		Date newSqlStartTime = null;
+		
+		try
+		{
+			//makes userInput to the user's input
+			String newStartTime = editScanner.nextLine();
+			
+			//converts string into sql date
+			newSqlStartTime=Date.valueOf(newStartTime);  
+			
+		}
+		catch(Exception e) 
+		{
+			System.out.println("Invalid input! try again");
+		}
+		return newSqlStartTime;
+	}
+	
+	/**
+	 * Edits the end time
+	 * @return newSqlStartTime the new time appointment ends at
+	 */
+	public Date editEndTime()
+	{
+		Scanner editScanner = new Scanner(System.in);  // Create a Scanner object
+		
+		System.out.println("Enter the new end Time: ");
+		
+		Date newSqlEndTime = null;
+		
+		try
+		{
+			//makes userInput to the user's input
+			String newEndTime = editScanner.nextLine();
+			
+			//converts string into sql date
+			newSqlEndTime=Date.valueOf(newEndTime);  
+			
+		}
+		catch(Exception e) 
+		{
+			System.out.println("Invalid input! try again");
+		}
+		return newSqlEndTime;
+	}
+	
+	/**
+	 * Edits the treatment type
+	 * @return newTreatmentType the new treatment type
+	 */
+	public String editTreatmentType()
+	{
+		Scanner editScanner = new Scanner(System.in);  // Create a Scanner object
+		
+		System.out.println("Enter the new treatment Type: ");
+
+		//makes userInput to the user's input
+		String newTreatmentType = editScanner.nextLine();
+
+		System.out.println("Invalid input! try again");
+
+		return newTreatmentType;
 	}
 }
