@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Diary {
 	private Tree appTree;
@@ -63,4 +64,16 @@ public class Diary {
 	{
 		//still needs to be implemented
 	}
+	
+	public void editAppointment()
+	{
+		Scanner editScanner = new Scanner(System.in);  // Create a Scanner object
+		
+		int editID = editScanner.nextInt();
+		
+		
+		appTree.editTree(editID);
+		
+	}
+	
 }
