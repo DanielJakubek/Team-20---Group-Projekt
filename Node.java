@@ -96,17 +96,17 @@ public class Node {
 	 * Mutator method for the date
 	 * @param date of the appointment
 	 */
-	public void setDate(Date date)
+	public void setDate(String date)
 	{
 		appointment.setDate(date);
 	}
 	
-	public void setStartTime(Date startTime) 
+	public void setStartTime(String startTime) 
 	{
 		appointment.setStartTime(startTime);
 	}
 	
-	public void setEndTime(Date endTime) {
+	public void setEndTime(String endTime) {
 		appointment.setEndTime(endTime);
 	}
 	

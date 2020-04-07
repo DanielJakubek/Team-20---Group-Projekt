@@ -1,9 +1,10 @@
 import java.util.Date;
 
 public class Appointment {
-	private Date date;
-	private Date startTime;
-	private Date endTime;
+	private String date;
+	private String startTime;
+	private String endTime;
+	
 	private String treatmentType;
 	private Professional[] profsPresent;
 	private String appID;
@@ -13,27 +14,27 @@ public class Appointment {
 		
 	}
 	
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 	
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	
-	public Date getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
 	
-	public void setStartTime(Date startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 	
-	public Date getEndTime() {
+	public String getEndTime() {
 		return endTime;
 	}
 	
-	public void setEndTime(Date endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 	

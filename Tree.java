@@ -344,88 +344,136 @@ public class Tree {
 	}
 	
 	
-	
 	/**
 	 * Edits the date of a node
-	 * @return newSqlDate the new date set by user
+	 * @return newDate combination of newDay, newMonth and newYear
 	 */
-	public Date editDate()
+	public String editDate()
 	{
 		Scanner editScanner = new Scanner(System.in);  // Create a Scanner object
 		
-		Date newSqlDate = null;
+		int intDate[] = {0,0,0};
+		String newDay = "";
+		String newMonth="";
+		String newYear="";
 		
-		try
+		do
 		{
-			System.out.println("Enter the new Date: ");
-			//makes userInput to the user's input
-			String newDate = editScanner.nextLine();
+			try
+			{
+				System.out.println("Enter the new Day: ");
+				//makes userInput to the user's input
+				newDay = editScanner.nextLine();
+				
+				System.out.println("Enter the new Month: ");
+				//makes userInput to the user's input
+				newMonth = editScanner.nextLine();
+				
+				System.out.println("Enter the new Year: ");
+				//makes userInput to the user's input
+				newYear = editScanner.nextLine(); 
+				
+				//turns string to Int
+				intDate[0] = Integer.parseInt(newDay);
+				intDate[1] = Integer.parseInt(newYear);
+				intDate[2] = Integer.parseInt(newMonth);
+				
+			}
+			catch(Exception e) 
+			{
+				System.out.println("Invalid input! try again");
+				intDate[0] = 500;
+			}
 			
-			//converts string into sql date
-			newSqlDate=Date.valueOf(newDate);  
-			
-		}
-		catch(Exception e) 
-		{
-			System.out.println("Invalid input! try again");
-		}
-		return newSqlDate;
+			}while (intDate[0] < 0 && intDate[0]>32);
+		
+		String newDate = (newDay + "/" + newMonth + "/" + newYear);
+		
+		return newDate;
 	}
 	
 	/**
 	 * Edits the start time
 	 * @return newSqlStartTime the new time appointment starts at
 	 */
-	public Date editStartTime()
+	public String editStartTime()
 	{
 		Scanner editScanner = new Scanner(System.in);  // Create a Scanner object
 		
-		System.out.println("Enter the new start Time: ");
+		int intHours[] = {0,0};
+		String newHour = "";
+		String newMinute="";
 		
-		Date newSqlStartTime = null;
+		do
+		{
+			try
+			{
+				System.out.println("Enter the new start Hour: ");
+				//makes userInput to the user's input
+				newHour = editScanner.nextLine();
+				
+				System.out.println("Enter the new start Minutes: ");
+				//makes userInput to the user's input
+				newMinute = editScanner.nextLine();
+				
+				//turns string to Int
+				intHours[0] = Integer.parseInt(newHour);
+				intHours[1] = Integer.parseInt(newMinute);
+				
+			}
+			catch(Exception e) 
+			{
+				System.out.println("Invalid input! try again");
+				intHours[0] = 500;
+			}
+			
+			}while (intHours[0] < 0 && intHours[0]>24);
 		
-		try
-		{
-			//makes userInput to the user's input
-			String newStartTime = editScanner.nextLine();
-			
-			//converts string into sql date
-			newSqlStartTime=Date.valueOf(newStartTime);  
-			
-		}
-		catch(Exception e) 
-		{
-			System.out.println("Invalid input! try again");
-		}
-		return newSqlStartTime;
+		String newHours = (newHour + ":" + newMinute);
+		
+		return newHours;
 	}
 	
 	/**
 	 * Edits the end time
 	 * @return newSqlStartTime the new time appointment ends at
 	 */
-	public Date editEndTime()
+	public String editEndTime()
 	{
 		Scanner editScanner = new Scanner(System.in);  // Create a Scanner object
 		
-		System.out.println("Enter the new end Time: ");
+		int intHours[] = {0,0};
+		String newHour = "";
+		String newMinute="";
 		
-		Date newSqlEndTime = null;
+		do
+		{
+			try
+			{
+				System.out.println("Enter the new end Hour: ");
+				//makes userInput to the user's input
+				newHour = editScanner.nextLine();
+				
+				System.out.println("Enter the new end Minutes: ");
+				//makes userInput to the user's input
+				newMinute = editScanner.nextLine();
+				
+				//turns string to Int
+				intHours[0] = Integer.parseInt(newHour);
+				intHours[1] = Integer.parseInt(newMinute);
+				
+			}
+			catch(Exception e) 
+			{
+				System.out.println("Invalid input! try again");
+				intHours[0] = 500;
+			}
+			
+			}while (intHours[0] < 0 && intHours[0]>24);
 		
-		try
-		{
-			//makes userInput to the user's input
-			String newEndTime = editScanner.nextLine();
-			
-			//converts string into sql date
-			newSqlEndTime=Date.valueOf(newEndTime);  
-			
-		}
-		catch(Exception e) 
-		{
-			System.out.println("Invalid input! try again");
-		}
-		return newSqlEndTime;
+		String newHours = (newHour + ":" + newMinute);
+		
+		return newHours;
 	}
 	
 	/**
