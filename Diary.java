@@ -89,4 +89,19 @@ public class Diary {
 	{
 		//still needs to be implemented
 	}
+	
+	/**
+	*Deals with editing appointments by asking the user what they want to eidt and then calling the
+	*edit method from the other class
+	*/
+	public void editAppointment()
+	{
+		Scanner editScanner = new Scanner(System.in);  // Create a Scanner object
+		
+		int editID = editScanner.nextInt();
+		
+		
+		appTree.editTree(editID);
+		
+	}
 }
