@@ -1,8 +1,13 @@
-import java.util.Scanner;
+import java.io.BufferedOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 
 public class Diary {
 	private Tree appTree;
 	private Stack undoStack;
+	private FileOutputStream fos;
+	private PrintWriter pw;
 	
 	/**
 	 * Default constructor for Diary class
@@ -11,6 +16,15 @@ public class Diary {
 	{
 		appTree = new Tree();
 		undoStack = new Stack();
+		
+		try {
+			fos = new FileOutputStream("Appointments.txt");
+		} catch (FileNotFoundException e) {
+			System.out.println("Cannot find or create save file!");
+			e.printStackTrace();
+		}
+		
+		pw = new PrintWriter(fos);
 	}
 	/**
 	 * Accessor method for appTree
@@ -58,22 +72,21 @@ public class Diary {
 	public void saveAppointment()
 	{
 		//still needs to be implemented
+		Node[] nodes = new Node[appTree.getTreeSize(appTree.getRoot())]; 
+		appTree.printTree(appTree.getRoot(), nodes);
+		
+		for(int i=0;i<nodes.length;i++)
+		{
+			pw.println(nodes[i].getAppID()+nodes[i].getAppointment().getDate()+" "+
+					nodes[i].getAppointment().getStartTime()+" "+nodes[i].getAppointment().getEndTime()+" "+
+					nodes[i].getAppointment().getTreatmentTypeID()+" ");
+		}
+		
+		pw.close();
 	}
 	
 	public void restoreAppointment()
 	{
 		//still needs to be implemented
 	}
-	
-	public void editAppointment()
-	{
-		Scanner editScanner = new Scanner(System.in);  // Create a Scanner object
-		
-		int editID = editScanner.nextInt();
-		
-		
-		appTree.editTree(editID);
-		
-	}
-	
 }
