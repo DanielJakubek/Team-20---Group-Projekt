@@ -1,72 +1,65 @@
-/*
- * Appointment class
- * v0.1
- * Sameer Al Harbi
- */
-public class Appointment {
-	
-	private int date;//in form ddmmyyyy
-	private int startTime;
-	private int endTime;
-	
-	private int treatmentTypeID;
-	private int[] professionalsPresentIDs;
-	private int appID;
-	
-	public Appointment()//constructor will fullfill the role of the generateAppID() method
-	{
-		//Check what is the largest current ID value and assign appID to it +1
-	}
+import java.util.Date;
 
-	public int getDate() {
+public class Appointment {
+	private Date date;
+	private Date startTime;
+	private Date endTime;
+	private String treatmentType;
+	private Professional[] profsPresent;
+	private String appID;
+	
+	public Appointment()
+	{
+		
+	}
+	
+	public Date getDate() {
 		return date;
 	}
-
-	public void setDate(int date) {
+	
+	public void setDate(Date date) {
 		this.date = date;
 	}
-
-	public int getStartTime() {
+	
+	public Date getStartTime() {
 		return startTime;
 	}
-
-	public void setStartTime(int startTime) {
+	
+	public void setStartTime(Date startTime) {
 		this.startTime = startTime;
 	}
-
-	public int getEndTime() {
+	
+	public Date getEndTime() {
 		return endTime;
 	}
-
-	public void setEndTime(int endTime) {
+	
+	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
-
-	public int getTreatmentTypeID() {
-		return treatmentTypeID;
+	
+	public String getTreatmentType() {
+		return treatmentType;
 	}
-
-	public void setTreatmentTypeID(int treatmentTypeID) {
-		this.treatmentTypeID = treatmentTypeID;
+	
+	public void setTreatmentType(String treatmentType) {
+		this.treatmentType = treatmentType;
 	}
-
-	public int[] getProfessionalsPresentIDs() {
-		return professionalsPresentIDs;
+	
+	public Professional[] getProfsPresent() {
+		return profsPresent;
 	}
-
-	public void setProfessionalsPresentIDs(int[] professionalsPresentIDs) {
-		this.professionalsPresentIDs = professionalsPresentIDs;
+	
+	public void setProfsPresent(Professional[] profsPresent) {
+		this.profsPresent = profsPresent;
 	}
-
-	public int getAppID() {
+	
+	public String getAppID() {
 		return appID;
 	}
-
-	public void setAppID(int appID) {
+	
+	public void setAppID(String appID) {
 		this.appID = appID;
 	}
 	
 	
-	
-
 }
