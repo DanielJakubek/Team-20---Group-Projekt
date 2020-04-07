@@ -9,9 +9,16 @@ public class Appointment {
 	private Professional[] profsPresent;
 	private String appID;
 	
+	public Appointment(String date, String startTime, String endTime, String treatmentType)
+	{
+		this.date = date;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.treatmentType = treatmentType;
+	}
+	
 	public Appointment()
 	{
-		
 	}
 	
 	public String getDate() {

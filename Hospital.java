@@ -15,6 +15,7 @@ import java.util.Scanner;
 public class Hospital
 {
 	LinkedList<Professional> professionalObject;
+	LinkedList<Integer> professionalsChosen;
 	
 	/**
 	 * Constructor
@@ -22,6 +23,7 @@ public class Hospital
 	public Hospital()
 	{
 		professionalObject = new LinkedList<Professional>(); 
+		professionalsChosen = new LinkedList<Integer>();
 	}
 	
 	/**
@@ -32,6 +34,16 @@ public class Hospital
 	{
 		//adds the details to the list
 		professionalObject.add(details);
+	}
+	
+	/**
+	 * deals with adding the chosen professional's ID to a linked list
+	 * @param ID of the professional
+	 */
+	public void addChosenProfessionalToList(int ID)
+	{
+		//adds the details to the list
+		professionalsChosen.add(ID);
 	}
 	
 	/**
@@ -276,4 +288,95 @@ public class Hospital
 			}
 		}
 	}
+	
+	/**
+	 * This method prints the list of professionals and then asks the user to
+	 * choose which professional they want in their appointment and then adds
+	 * them to a linked list
+	 */
+	public void chooseProfessionals()
+	{
+		Scanner chooseScanner = new Scanner(System.in);  // Create a Scanner object
+		
+		//prints the list of all professionals
+		printProfessionalList();
+	
+		boolean choosing = true;
+		
+		//loops while the user chooses what professionals they want an appointment with
+		while(choosing)
+		{
+			System.out.println("Choose health professionals that you would like an appointment with by their ID\r Enter 0 to quit");
+
+			int professionalIDChosen = 0;
+			
+			do
+			{
+				try
+				{
+					//makes userInput to the user's input
+					String profChosen = chooseScanner.nextLine();
+		
+					//converts user input to integer value
+					professionalIDChosen = Integer.parseInt(profChosen);
+				}
+				catch(Exception e) 
+				{
+					System.out.println("Invalid input! try again");
+					professionalIDChosen = -1;
+				}
+				
+				if(professionalIDChosen == 0)
+				{
+					choosing = false;
+				}
+				
+				//Iterator of type Professional
+			    Iterator<Integer> it = professionalsChosen.iterator();
+			 
+			    //checks if the ID is unique
+				while(it.hasNext())
+				{
+					int nextProfessional = it.next();
+					
+					//checks if list already contains that ID
+					if(nextProfessional == professionalIDChosen)
+					{
+						professionalIDChosen = -1;
+					}
+				}
+			}while(professionalIDChosen <0);
+			
+			//adds the chosen professional to a list
+			addChosenProfessionalToList(professionalIDChosen);
+		}
+		
+		
+	}
+	
+	public void searchDate()
+	{
+		Scanner chooseScanner = new Scanner(System.in);  // Create a Scanner object
+		
+		System.out.println("Between what days would you like this appointment with those professionals?");
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

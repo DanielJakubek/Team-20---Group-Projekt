@@ -11,6 +11,7 @@ public class Professional
 	private String name;
 	private String profession;
 	private String workLocation;
+	private Diary diary;
 	
     /**
      * Constructor for objects of class Professional
@@ -22,6 +23,7 @@ public class Professional
 		name = theName;
 		profession =theProfession;
 		workLocation = theWorkLocation;
+		diary = new Diary();
 	}
 
 	/**
@@ -78,5 +80,17 @@ public class Professional
 	 */
 	public void setWorkLocation(String workLocation) {
 		this.workLocation = workLocation;
+	}
+	
+	public void createNewApp(String date, String startTime, String endTime, String treatmentType)
+	{
+		int id = 0;
+		
+		Appointment newApp = new Appointment(date,startTime,endTime,treatmentType);
+		
+
+		
+		
+		diary.createAppointment(id, newApp);
 	}
 }
