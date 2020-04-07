@@ -1,6 +1,9 @@
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
@@ -10,6 +13,7 @@ public class Diary {
 	private FileOutputStream fos;
 	private PrintWriter pw;
 	
+	
 	/**
 	 * Default constructor for Diary class
 	 */
@@ -18,14 +22,6 @@ public class Diary {
 		appTree = new Tree();
 		undoStack = new Stack();
 		
-		try {
-			fos = new FileOutputStream("Appointments.txt");
-		} catch (FileNotFoundException e) {
-			System.out.println("Cannot find or create save file!");
-			e.printStackTrace();
-		}
-		
-		pw = new PrintWriter(fos);
 	}
 	/**
 	 * Accessor method for appTree
@@ -72,15 +68,24 @@ public class Diary {
 	
 	public void saveAppointment()
 	{
+		try {
+			fos = new FileOutputStream("Appointments.txt");
+		} catch (FileNotFoundException e) {
+			System.out.println("Cannot find or create save file!");
+			e.printStackTrace();
+		}
+		
+		pw = new PrintWriter(fos);
+		
 		//still needs to be implemented
 		Node[] nodes = new Node[appTree.getTreeSize(appTree.getRoot())]; 
 		appTree.printTree(appTree.getRoot(), nodes);
 		
 		for(int i=0;i<nodes.length;i++)
 		{
-			pw.println(nodes[i].getAppID()+nodes[i].getAppointment().getDate()+" "+
+			pw.println(nodes[i].getAppID()+" "+nodes[i].getAppointment().getDate()+" "+
 					nodes[i].getAppointment().getStartTime()+" "+nodes[i].getAppointment().getEndTime()+" "+
-					nodes[i].getAppointment().getTreatmentTypeID()+" ");
+					nodes[i].getAppointment().getTreatmentType()+" ");
 		}
 		
 		pw.close();
@@ -88,7 +93,50 @@ public class Diary {
 	
 	public void restoreAppointment()
 	{
-		//still needs to be implemented
+		FileReader fr = null;
+		BufferedReader br;
+		String nextLine = "";
+		String loaded[] = new String[4];
+		
+		try {
+			fr = new FileReader("Appointments.txt");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		br = new BufferedReader(fr);
+		
+		try {
+			nextLine = br.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	while(nextLine!=null)
+	{
+		for(int i=0;i<4;i++)
+		{
+			loaded[i]=nextLine;	
+			try {
+				nextLine = br.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Appointment app = new Appointment();
+			app.setAppID(loaded[0]);
+			app.setDate(loaded[1]);
+			app.setStartTime(loaded[2]);
+			app.setEndTime(loaded[3]);
+			app.setTreatmentType(loaded[4]);
+			int altID = Integer.parseInt(loaded[0]);
+			appTree.addToTree(altID, app);
+			
+		}
+		
+	}
+		
 	}
 	
 	/**
