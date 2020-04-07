@@ -160,30 +160,24 @@ public class Hospital
 				System.out.println("Invalid input! try again");
 				professionalID = 0;
 			}
-
-			//Iterator of type Professional
-		    Iterator<Professional> it = professionalObject.iterator();
-		 
-			//Iterates through the list while it is not empty
-			while(it.hasNext())
-			{
-				Professional nextProfessional = it.next();
-				
-				//removes the item if it is found
-				if(nextProfessional.getProfID() == professionalID)
-				{
-					professionalObject.remove(nextProfessional);
-				}
-				else
-				{
-					System.out.println("The professional is not in the system");
-					return;
-				}
-			}
-
+			
 		//loops as long as the the ID is unique and greater than one
 		}while(professionalID <1);
-
+		
+		//Iterator of type Professional
+	    Iterator<Professional> it = professionalObject.iterator();
+	 
+		//Iterates through the list while it is not empty
+		while(it.hasNext())
+		{
+			Professional nextProfessional = it.next();
+			
+			//removes the item if it is found
+			if(nextProfessional.getProfID() == professionalID)
+			{
+				professionalObject.remove(nextProfessional);
+			}
+		}
 	}
 	
 	/**
