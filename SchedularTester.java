@@ -1,5 +1,5 @@
 
-ppublic class SchedularTester 
+public class SchedularTester 
 {
 	Hospital hospitalTest;
 	
@@ -17,10 +17,16 @@ ppublic class SchedularTester
 	 */
 	private void process()
 	{
-//		testAddToList();
+		testAddToList();
 //		testDeleteFromList();
 //		testEditFromList();
-		testEnteringBetweenDates();
+		//testEnteringBetweenDates();
+		hospitalTest.getpro(1).createNewApp("", "1", "1", "extension");
+		Node[] node = hospitalTest.getpro(1).getDiary().getAllApointments();
+		for(int i=0;i<node.length;i++)
+		{
+			System.out.println(node[i].getAppointment().getTreatmentType());
+		}
 	}
 	
 	
@@ -91,6 +97,8 @@ ppublic class SchedularTester
 		
 		test.init();
 		test.process();
+		
+		
 	}
 	
 	
