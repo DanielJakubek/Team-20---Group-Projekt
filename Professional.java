@@ -88,9 +88,35 @@ public class Professional
 		
 		Appointment newApp = new Appointment(date,startTime,endTime,treatmentType);
 		
-
-		
-		
 		diary.createAppointment(id, newApp);
 	}
+	
+	public int[] checkIfBusy(int[] startdate, int[] enddate)//dd mm yyyy
+	{
+		int[] cal = diary.getCalendar();
+		
+		int start_date = startdate[1]*31 + startdate[0];
+		int end_date = enddate[1]*31 + enddate[0];
+		int diff = end_date - start_date;
+		
+		int[] freedays = new int[diff];
+		int pointer = 0;
+		
+		for(int i=start_date;i<end_date;i++)
+		{
+			if(cal[i]==1)
+			{
+				freedays[pointer] = 1;
+			}
+			else
+			{
+				freedays[pointer] = 0;
+			}
+			pointer++;
+		}
+		
+		return freedays;
+		
+	}
 }
+
