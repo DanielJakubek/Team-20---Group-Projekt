@@ -32,6 +32,11 @@ public class Professional
 	public int getProfID() {
 		return profID;
 	}
+	
+	public Diary getDiary()
+	{
+		return diary;
+	}
 
 	/**
 	 * @param profID the profID to set
