@@ -12,6 +12,7 @@ public class Diary {
 	private Stack undoStack;
 	private FileOutputStream fos;
 	private PrintWriter pw;
+	private int[] calendar;
 	
 	
 	/**
@@ -21,6 +22,7 @@ public class Diary {
 	{
 		appTree = new Tree();
 		undoStack = new Stack();
+		calendar = new int[372];
 		
 	}
 	/**
@@ -45,6 +47,8 @@ public class Diary {
 	{
 		UndoableAdd add = new UndoableAdd(this.appTree, id, appointment);
 		undoStack.push(add);
+		
+		
 	}
 	
 	/**
@@ -145,6 +149,23 @@ public class Diary {
 		
 		
 		appTree.editTree(editID);
+		
+	}
+	
+	public Node[] getAllApointments()
+	{
+		Node[] nodes = new Node[appTree.getTreeSize(appTree.getRoot())];
+		appTree.printTree(appTree.getRoot(),nodes);
+		return nodes;
+	}
+	
+	public int[] getCalendar()
+	{
+		return calendar;
+	}
+	
+	public void updateCalendar()
+	{
 		
 	}
 }
