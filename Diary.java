@@ -77,15 +77,14 @@ public class Diary {
 		
 		pw = new PrintWriter(fos);
 		
-		//still needs to be implemented
 		Node[] nodes = new Node[appTree.getTreeSize(appTree.getRoot())]; 
 		appTree.printTree(appTree.getRoot(), nodes);
 		
 		for(int i=0;i<nodes.length;i++)
 		{
-			pw.println(nodes[i].getAppID()+" "+nodes[i].getAppointment().getDate()+" "+
-					nodes[i].getAppointment().getStartTime()+" "+nodes[i].getAppointment().getEndTime()+" "+
-					nodes[i].getAppointment().getTreatmentType()+" ");
+			pw.println(nodes[i].getAppID()+","+nodes[i].getAppointment().getDate()+","+
+					nodes[i].getAppointment().getStartTime()+","+nodes[i].getAppointment().getEndTime()+","+
+					nodes[i].getAppointment().getTreatmentType()+",");
 		}
 		
 		pw.close();
@@ -96,7 +95,7 @@ public class Diary {
 		FileReader fr = null;
 		BufferedReader br;
 		String nextLine = "";
-		String loaded[] = new String[4];
+		String delims = "[,]";
 		
 		try {
 			fr = new FileReader("Appointments.txt");
@@ -115,26 +114,21 @@ public class Diary {
 		
 	while(nextLine!=null)
 	{
-		for(int i=0;i<4;i++)
-		{
-			loaded[i]=nextLine;	
-			try {
-				nextLine = br.readLine();
-			} catch (IOException e) {
+		String[] loaded = nextLine.split(delims);	
+		try {
+			nextLine = br.readLine();
+		} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			Appointment app = new Appointment();
-			app.setAppID(loaded[0]);
-			app.setDate(loaded[1]);
-			app.setStartTime(loaded[2]);
-			app.setEndTime(loaded[3]);
-			app.setTreatmentType(loaded[4]);
-			int altID = Integer.parseInt(loaded[0]);
-			appTree.addToTree(altID, app);
-			
+			e.printStackTrace();
 		}
-		
+		Appointment app = new Appointment();
+		app.setAppID(loaded[0]);
+		app.setDate(loaded[1]);
+		app.setStartTime(loaded[2]);
+		app.setEndTime(loaded[3]);
+		app.setTreatmentType(loaded[4]);
+		int altID = Integer.parseInt(loaded[0]);
+		appTree.addToTree(altID, app);
 	}
 		
 	}
