@@ -37,6 +37,23 @@ public class Hospital
 		professionalObject.add(details);
 	}
 	
+	public int getpro(int ID)
+	{
+		//Iterator of type Professional
+	    Iterator<Professional> it = professionalObject.iterator();
+	 
+	    //checks if the ID is unique
+		while(it.hasNext())
+		{
+			Professional nextProfessional = it.next();
+			if(nextProfessional.getProfID()==ID)
+			{
+				return nextProfessional.getProfID();
+			}
+		}
+		return 0;
+	}
+	
 	/**
 	 * deals with adding the chosen professional's ID to a linked list
 	 * @param ID of the professional
