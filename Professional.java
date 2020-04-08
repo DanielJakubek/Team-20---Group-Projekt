@@ -25,17 +25,17 @@ public class Professional
 		workLocation = theWorkLocation;
 		diary = new Diary();
 	}
+	
+	public Diary getDiary()
+	{
+		return diary;
+	}
 
 	/**
 	 * @return the profID
 	 */
 	public int getProfID() {
 		return profID;
-	}
-	
-	public Diary getDiary()
-	{
-		return diary;
 	}
 
 	/**
@@ -124,4 +124,3 @@ public class Professional
 		
 	}
 }
-
