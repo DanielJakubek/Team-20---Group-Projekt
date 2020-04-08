@@ -1,5 +1,5 @@
 
-public class SchedularTester 
+ppublic class SchedularTester 
 {
 	Hospital hospitalTest;
 	
@@ -17,9 +17,10 @@ public class SchedularTester
 	 */
 	private void process()
 	{
-		testAddToList();
-		testDeleteFromList();
-		testEditFromList();
+//		testAddToList();
+//		testDeleteFromList();
+//		testEditFromList();
+		testEnteringBetweenDates();
 	}
 	
 	
@@ -75,8 +76,10 @@ public class SchedularTester
 		hospitalTest.printProfessionalList(); //prints list
 	}
 	
-   
-	
+	public void testEnteringBetweenDates()
+	{
+		hospitalTest.returnStartTime();
+	}
 	
 	/**
 	 * main method that deals with executing the code
