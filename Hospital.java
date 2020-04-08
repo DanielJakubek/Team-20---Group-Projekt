@@ -1,3 +1,4 @@
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -8,8 +9,8 @@ import java.util.Scanner;
  * which are stored in the Professional class. These operations would include:
  * adding item to linked list, deleting from linked list and so on.
  * 
- * @author Daniel Jakubek
- * @Version March 2020
+ * @author Team 20
+ * @Version April 2020
  *
  */
 public class Hospital
@@ -329,6 +330,7 @@ public class Hospital
 				if(professionalIDChosen == 0)
 				{
 					choosing = false;
+					return;
 				}
 				
 				//Iterator of type Professional
@@ -350,33 +352,133 @@ public class Hospital
 			//adds the chosen professional to a list
 			addChosenProfessionalToList(professionalIDChosen);
 		}
-		
-		
 	}
 	
-	public void searchDate()
+	/**
+	 * Prints the ID list of all professionals chosen by iterating through the 
+	 * integer linked list
+	 */
+	public void printChosenProfessionals()
 	{
+		 Iterator<Integer> it = professionalsChosen.iterator();
+		
+		
+		while(it.hasNext()) 
+		{
+	         System.out.println(it.next());
+	    }
+	}
+	
+	/**
+	 * This method asks the user to input the start date that they want to start the search on and then
+	 * return an array that contains day, month and year.
+	 * @return intStartDate array composed of the date
+	 */
+	public int[] returnStartTime()
+	{
+		int year = Calendar.getInstance().get(Calendar.YEAR);
+		int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+		int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+		
+		int intStartDate[] = new int[3];
+		
 		Scanner chooseScanner = new Scanner(System.in);  // Create a Scanner object
 		
-		System.out.println("Between what days would you like this appointment with those professionals?");
+		System.out.println("Enter start date in the dd/mm/yyyy format");
 		
+		boolean askingforDates = true;
 		
-		
-		
-		
+		//loops while the user is entering the date
+		while(askingforDates)
+		{
+			System.out.println("Enter the start date in the dd/mm/yyyy format");
+			
+			String startDate = chooseScanner.nextLine();
+			intStartDate = dateToInt(startDate);
+			
+			//keeps on asking the user to re-input their date if it failed the validation 
+			while((intStartDate[0] < day && intStartDate[1] <= month) || intStartDate[2] < year || intStartDate[0] > 31 || intStartDate[1] > 12 || intStartDate[1] < month)
+			{
+				System.out.println("Enter the start date in the dd/mm/yyyy format");
+				
+				startDate = chooseScanner.nextLine();
+				intStartDate = dateToInt(startDate);
+			}
+			
+			askingforDates = false;	
+		}
+	
+		return intStartDate;
 	}
 	
+	/**
+	 * This method asks the user to input the start date that they want to start the search on and then
+	 * return an array that contains day, month and year.
+	 * @return intStartDate array composed of the date
+	 */
+	public int[] returnEndTime()
+	{
+		int year = Calendar.getInstance().get(Calendar.YEAR);
+		int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+		int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+		
+		int intEndDate[] = new int[3];
+		
+		Scanner chooseScanner = new Scanner(System.in);  // Create a Scanner object
+		
+		System.out.println("Enter end date in the dd/mm/yyyy format");
+		
+		boolean askingforDates = true;
+		
+		//loops while the user is entering the date
+		while(askingforDates)
+		{
+			System.out.println("Enter end date in the dd/mm/yyyy format");
+			
+			//gets user input and then transfers it to an int array
+			String startDate = chooseScanner.nextLine();
+			intEndDate = dateToInt(startDate);
+			
+			//keeps on asking the user to re-input their date if it failed the validation 
+			while((intEndDate[0] < day && intEndDate[1] <= month) || intEndDate[2] < year || intEndDate[0] > 31 || intEndDate[1] > 12 || intEndDate[1] < month)
+			{
+				System.out.println("Enter end date in the dd/mm/yyyy format");
+				
+				startDate = chooseScanner.nextLine();
+				intEndDate = dateToInt(startDate);
+			}
+			
+			askingforDates = false;	
+		}
+		return intEndDate;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * Turns the string date to an int array
+	 * @param date that was entered by the user
+	 * @return intDate the int array of date (dd/mm/yyyy)
+	 */
+	public int[] dateToInt(String date)
+	{
+		int intDate[] = new int[3];
+		String stringDate[] = new String[3];
+		
+		stringDate = date.split("/");
+
+		try
+		{
+			for(int i = 0; i < 3; i++)
+			{
+				//converts string date to integer value
+				intDate[i] = Integer.parseInt(stringDate[i]);
+			}
+		}
+		catch(Exception e) 
+		{
+			System.out.println("Invalid input! try again");
+			
+		}	
+		
+		return intDate;
+	}
 }
