@@ -514,4 +514,19 @@ public class Hospital
 			System.out.println(node[i].getAppointment().getTreatmentType());
 		}	
 	}
+	
+	public void addAppointment()
+	{
+		int currentMaxID = 0;//delete me
+		
+		int ID = getProfessionalsID();
+		Appointment appointment = new Appointment();
+		getpro(getProfessionalsID()).getDiary().createAppointment(currentMaxID, appointment);
+		Scanner chooseScanner = new Scanner(System.in);  // Create a Scanner object
+		System.out.println("Appointment created");
+		getpro(getProfessionalsID()).getDiary().editAppointment(currentMaxID);
+		currentMaxID++;
+		
+		
+	}
 }
