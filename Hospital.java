@@ -37,7 +37,7 @@ public class Hospital
 		professionalObject.add(details);
 	}
 	
-	public int getpro(int ID)
+	public Professional getpro(int ID)
 	{
 		//Iterator of type Professional
 	    Iterator<Professional> it = professionalObject.iterator();
@@ -48,10 +48,10 @@ public class Hospital
 			Professional nextProfessional = it.next();
 			if(nextProfessional.getProfID()==ID)
 			{
-				return nextProfessional.getProfID();
+				return nextProfessional;
 			}
 		}
-		return 0;
+		return null;
 	}
 	
 	/**
