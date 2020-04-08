@@ -343,6 +343,7 @@ public class Tree {
 		}
 	}
 	
+	
 	/**
 	 * Edits the date of a node
 	 * @return newDate combination of newDay, newMonth and newYear
