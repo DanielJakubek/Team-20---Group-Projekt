@@ -498,4 +498,20 @@ public class Hospital
 		
 		return intDate;
 	}
+	
+		/**
+	 * Asks the user who's appointments they want to see and the prints their diary
+	 */
+	public void printProfessionalsAppointments()
+	{
+		Scanner chooseScanner = new Scanner(System.in);  // Create a Scanner object
+		
+		System.out.println("Which professional's appointments would you like to see?");
+		
+		Node[] node = getpro(getProfessionalsID()).getDiary().getAllApointments();
+		for(int i=0;i<node.length;i++)
+		{
+			System.out.println(node[i].getAppointment().getTreatmentType());
+		}	
+	}
 }
