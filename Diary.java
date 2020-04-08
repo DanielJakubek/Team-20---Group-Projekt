@@ -168,4 +168,9 @@ public class Diary {
 	{
 		
 	}
+	
+	public void editAppointment(int editID)
+	{
+		appTree.editTree(editID);
+	}
 }
